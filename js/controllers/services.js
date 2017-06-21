@@ -76,22 +76,13 @@ angular
   })
 
   // factory for hibi uid and pass
-  .factory('Authhibi',function(AUTH,$http){
+  .factory('Authhibi',function(AUTH,$http,$window){
     var AuthhibiFactory = {};
-
-      AuthhibiFactory.post =  function(path,data){
-        AUTH.post('/api/AIO/user/hibipass')
-        .then(function successCallback(response){
-          // do something when success
-          console.log("success the password is:" +  response)
-          return $http.post('http://localhost:3001/api/hibi' + path,data);
-
-        }, function errorCallback(response){
-          // do something when errorCallback
-          return "error in processing the request"
-
-        })
-        return $http.post('http://localhost:3001/api/AIO/user/hibipass')
+      AuthhibiFactory.post =  function(path,data={}){
+        var da = JSON.parse($window.localStorage.getItem('data'));
+        data.uid = da.hibiuid;
+        data.pwd = da.hibipass;
+        return $http.post('http://localhost:3001/api/hibi' + path,data)
 
       }
     return AuthhibiFactory

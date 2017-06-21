@@ -5,7 +5,9 @@ angular
     // saving the token in localStorage
     AUTH.post('/api/AIO/user/me')// /api/AIO/user/me geta of the user specified in token
     .then(function(response){
-      // saving to the scope
+      // saving data to the local storage
+      $window.localStorage.setItem('data',JSON.stringify(response.data));
+       // saving to the scope
       $scope.data = response.data;
     })
 
@@ -19,11 +21,13 @@ angular
 
       }
 
-      $scope.hibi = function(path,data){
+      $scope.hibi = function(path,data={}){
         Authhibi.post(path,data)
          .then(function successCallback(response){
           console.log("making request");
-          console.log(response);
+          console.log(response.data.Notices);
+          $scope.a = response.data.Notices
+
           // if success
         },function errorCallback(response){
           // if error
