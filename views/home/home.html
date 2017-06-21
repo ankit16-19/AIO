@@ -3,9 +3,10 @@
 <p>hello {{data.firstname + " " + data.lastname}}</p>
 <p>this is your home page</p>
 
-<a ng-click="hibi('/notice')">Hibi Notice</a>
+<a ng-click="hibi('/notice')">Hibi Notice</a><br>
+<a ng-click="hibi('/notice_data',data)">Hibi Notice Data</a>
+<input type="text" name="id" ng-model="data.id" placeholder="Notice ID..">
 
-
-<div data-ng-repeat="i in a">
- 	<p>{{i.attention}}</p>
+<div data-ng-repeat="i in notice_data">
+ 	<p>{{i}}</p>
 </div>

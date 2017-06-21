@@ -1,3 +1,11 @@
 div.pane{
   overflow-y:scroll;
 }
+
+input{
+	border:black solid 2px !important;
+}
+
+a:hover{
+	cursor: pointer;
+}

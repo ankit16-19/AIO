@@ -26,7 +26,7 @@ angular
          .then(function successCallback(response){
           console.log("making request");
           console.log(response.data.Notices);
-          $scope.a = response.data.Notices
+          $scope.notice_data = response.data.Notices
 
           // if success
         },function errorCallback(response){
