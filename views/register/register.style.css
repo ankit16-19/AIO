@@ -1,0 +1,18 @@
+div.pane{
+  overflow-y:scroll;
+}
+img.hibi{
+  margin-top: 5%;
+  width: 95%;
+}
+
+
+input{
+  margin:4% 0;
+  padding-left: 2% !important;
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  color: white !important;
+}
+.alrt{
+  color: red;
+}

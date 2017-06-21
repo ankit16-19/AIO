@@ -1,0 +1,28 @@
+<!-- <link rel="stylesheet" href="views/login/login.style.css"> -->
+<div class="wrapper">
+
+  <div class="container shadow" >
+        <img class="center-block logo" src="img/ionic.png">
+        <h1 style="text-align:center">Login Form</h1>
+        <hr >
+        <div ng-show="result" class="alrt">
+        <span>Username or password incorrect.</span>
+        </div>
+        <form name="loginform" novalidate ng-submit="login(data)">
+            <input type="text" class="form-control" ng-model="data.usrname" name="usrname" placeholder="Username" ng-required="true">
+            <div ng-show="loginform.usrname.$invalid && loginform.usrname.$touched" class="alrt">
+              <span>please fill username</span>
+            </div>
+            <input type="password" class="form-control" ng-model="data.usrpass" name="usrpass" placeholder="password" ng-required="true">
+            <div ng-show="loginform.usrpass.$invalid && loginform.usrpass.$touched" class="alrt">
+              <span>please fill password</span>
+            </div>
+            <button type="submit" class="btn btn-success" name="submit" ng-disabled="loginform.$invalid">Login</button>
+            <a href="#/register-1"><button type="submit" class="btn btn-danger" name="submit">Register</button></a>
+            <hr>
+            <a href="#">Forget password?</a>
+        </form>
+
+</div>
+
+</div>

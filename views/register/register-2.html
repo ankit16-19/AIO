@@ -1,0 +1,41 @@
+<div class="container" ng-init="check()">
+      <img class="center-block logo" src="img/ionic.png">
+      <h1 style="text-align:center">Register</h1>
+      <div ng-show="idused" class="alrt">
+      <span>This hibiscud id is already in use.</span>
+      <a href="#">change password</a>
+      </div>
+      <hr style="background:black">
+      <form name="registerform" novalidate ng-submit="register(data)">
+        <input type="text" class="form-control" name="frstname" ng-model="data.frstname" placeholder="First name" ng-required="true">
+        <div ng-show="registerform.frstname.$invalid && registerform.frstname.$touched" class="alrt">
+          <span>please fill username</span>
+        </div>
+        <input type="text" class="form-control" name="lstname" ng-model="data.lstname" placeholder="Last name" ng-required="true">
+        <div ng-show="registerform.lstname.$invalid && registerform.lstname.$touched" class="alrt">
+          <span>please fill username</span>
+        </div>
+          <input type="text" class="form-control" name="usr" ng-model="data.usrname" placeholder="Username" ng-required="true">
+          <div ng-show="registerform.usr.$invalid && registerform.usr.$touched" class="alrt">
+            <span>please fill username</span>
+          </div>
+          <div ng-show="available" class="alrt">
+           <span>Username not available. Please try a different one</span>
+          </div>
+          <input type="password" class="form-control" name="pass" ng-model="data.usrpass" placeholder="New password" ng-required="true">
+          <div ng-show="registerform.pass.$invalid && registerform.pass.$touched" class="alert alert-danger">
+            <span>please fill password</span>
+          </div>
+          <input type="password" class="form-control" name="confirmpass" ng-model="confirmpass" placeholder="Confirm password" ng-required="true">
+          <div ng-show="confirm(data.usrpass,confirmpass)" class="alert alert-danger">
+            <span>password donot match</span>
+          </div>
+          <button type="submit" class="btn btn-success" name="submit" ng-disabled="registerform.$invalid || confirm(data.usrpass,confirmpass) || !check">Register</button>
+
+          <hr>
+      </form>
+
+
+
+
+</div>
