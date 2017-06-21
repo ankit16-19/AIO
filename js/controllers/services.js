@@ -87,7 +87,7 @@ angular
           return $http.post('http://localhost:3001/api/hibi' + path,data);
 
         }, function errorCallback(response){
-          // do something when errorCallback //adasdasdfdf
+          // do something when errorCallback sdasdasdasdasdasdas
           return "error in processing the request"
 
         })
