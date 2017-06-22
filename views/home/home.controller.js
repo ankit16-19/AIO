@@ -1,6 +1,6 @@
 angular
   .module('homecntrl',[])
-  .controller('homecontroller',function($scope,$window,AUTH,ionicToast,$timeout,$location,Authhibi){
+  .controller('homecontroller',function($scope,$window,AUTH,ionicToast,$ionicLoading,$timeout,$location,Authhibi){
 
     // saving the token in localStorage
     AUTH.post('/api/AIO/user/me')// /api/AIO/user/me geta of the user specified in token
@@ -22,11 +22,19 @@ angular
       }
 
       $scope.hibi = function(path,data={}){
+        $ionicLoading.show({
+              content: 'Loading',
+              animation: 'fade-in',
+              showBackdrop: true,
+              maxWidth: 200,
+              showDelay: 0
+        });
         Authhibi.post(path,data)
          .then(function successCallback(response){
+          $ionicLoading.hide();
           console.log("making request");
           console.log(response.data.Notices);
-          $scope.notice_data = response.data.Notices
+          $scope.api_data = response.data.Notices
 
           // if success
         },function errorCallback(response){
