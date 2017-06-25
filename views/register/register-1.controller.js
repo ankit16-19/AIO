@@ -1,7 +1,9 @@
 angular
     .module('registercntrl1',[])
-    .controller('registercontroller1',function($scope,$http,$timeout,$location,ionicToast,$ionicLoading,AUTH,AuthToken,PassData){
+    .controller('registercontroller1',function($scope,$http,$timeout,$location,ionicToast,$ionicLoading,AUTH,AuthToken,PassData,$ionicTabsDelegate){
     //   $scope.result = false;
+    // not showing tabs
+    $ionicTabsDelegate.showBar(false);
       $scope.login = function(data){
           // Setup the loader
             $ionicLoading.show({

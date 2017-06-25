@@ -6,8 +6,7 @@ angular
 
     //authentication
     authFactory.post = function(path , data = {}){
-      console.log(data);
-      return $http.post('http://localhost:3001' + path,data);
+      return $http.post('http://192.168.43.3:3001' + path,data);
     }
     // cheking if user is logged in
     authFactory.isLoggedIn = function(){
@@ -55,7 +54,7 @@ angular
   })
 
   // passing data from register-1 to register-2
-  .factory('PassData',function(){
+  .factory('PassData',function($window){
     var passdataFactory = {};
 
     // varibale to save the data
@@ -66,12 +65,21 @@ angular
     }
     passdataFactory.getData = function(){
       return hibidata;
-    }
+    }    
     passdataFactory.newData = function(data){
       data.uid = hibidata.uid;
       data.pass = hibidata.pwd;
       return data;
     }
+
+    // pass data by saving into the localstorage
+    passdataFactory.sendDataSave = function(name,data){
+      $window.localStorage.setItem(name,data)
+    }
+    passdataFactory.getDataSave = function(name){
+      return $window.localStorage.getItem(name)
+    }
+
     return passdataFactory;
   })
 
@@ -82,7 +90,7 @@ angular
         var da = JSON.parse($window.localStorage.getItem('data'));
         data.uid = da.hibiuid;
         data.pwd = da.hibipass;
-        return $http.post('http://localhost:3001/api/hibi' + path,data)
+        return $http.post('http://192.168.43.3:3001/api/hibi' + path,data)
 
       }
     return AuthhibiFactory

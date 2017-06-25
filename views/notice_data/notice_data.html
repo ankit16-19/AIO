@@ -1,0 +1,24 @@
+<ion-header-bar class="bar bar-header bar-positive	">
+	<button menu-toggle = "left" class = "button button-icon icon ion-navicon"></button>
+	<h1 class="title">Notice</h1>
+	<button ng-click="logout()" class = "button button-icon icon ion-log-out pull-right"></button>
+</ion-header-bar>
+
+
+<ion-content>
+	<div class="card list" ng-show="show">
+	   <div class="item item-divider item-light">
+	      <p class="ion ion-calendar"> {{notice.date}}</p>
+	      <p class="ion pull-right ion-ios-information-outline"> {{notice.attention}}</p>
+	   </div>
+	   
+	   <div class="item item-text-wrap">
+	      <strong>{{notice.title}}</strong>
+	      <p>{{notice_data}}</p>
+	      <br>
+	      <p class="ion ion-person"> {{notice.posted_by}}</p>
+	   </div>
+	</div>
+</ion-content>
+
+

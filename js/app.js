@@ -1,5 +1,5 @@
 angular
-  .module('myapp',['ionic','ionic-toast','uiRouterStyles','routes','maincntrl','logincntrl','registercntrl1','registercntrl2','homecntrl','services','forgetPasscntrl'])
+  .module('myapp',['ionic','ionic-toast','uiRouterStyles','routes','maincntrl','logincntrl','registercntrl1','registercntrl2','homecntrl','services','forgetPasscntrl','notice_datacntrl'])
   .run(function($ionicPlatform,$rootScope,AUTH,$location,$window) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -41,42 +41,10 @@ angular
 
 }) // .run -- end
 
-  .config(function($httpProvider){
+  .config(function($httpProvider,$ionicConfigProvider){
     $httpProvider.interceptors.push('AuthInterceptor')
+    $ionicConfigProvider.tabs.position('bottom');
   })
 
 
 
-
-
-  // $rootScope.$on("$stateChangeStart",function(event,toState,toParam,fromState,fromParam){
-  //
-  //   if(toState.url != '/login' && toState.url != '/register-1'){// not checking for login page and register-1 page
-  //       // recording the last authenticated state
-  //       var lastAuthenticatedState
-  //       toState.authenticated == true? lastAuthenticatedState = toState.state: lastAuthenticatedState = ""
-  //       console.log(lastAuthenticatedState);//lastAuthenticatedState name
-  //       // check for the Authentication flag
-  //       console.log("authentication:" + toState.authenticated);
-  //       var authentication = toState.authenticated;
-  //       if(authentication){// is true
-  //           // check the authentication
-  //           if(AUTH.isLoggedIn()){// if true
-  //               // do something
-  //               console.log("User is logged in do something");
-  //           }else{// if not true : not looged in
-  //               console.log("Not authenticated redirecting to the login page");
-  //               $location.path('/login')
-  //           }
-  //       }else{//if authentication is false
-  //           $location.path('/404')
-  //           // when user goes one page back in historu
-  //           // $location.path("/lastAuthenticatedState")// last valid page is in the varibale lastAuthenticatedState
-  //       }
-  //     }
-  //     else{
-  //       // do something when state changes to login page or register-1 page
-  //     }
-  //
-  //
-  // }) //$rootScope.$on --end

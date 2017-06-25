@@ -40,6 +40,15 @@ angular
      },
      authenticationRq:true
    })
+    .state('data',{
+     url:'/data',
+     templateUrl:'views/notice_data/notice_data.html',
+     controller:'notice_datacontroller',
+     data:{
+        css:'views/notice_data/notice_data.style.css'
+     },
+     authenticationRq:true
+   })
    .state('404',{
      url:'/404',
      templateUrl:'views/404.html',
@@ -58,6 +67,11 @@ angular
       },
       authenticated:false
     })
+
+
+
+
+
 
    $urlRouterProvider.otherwise('/login');
 

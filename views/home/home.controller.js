@@ -1,7 +1,6 @@
 angular
   .module('homecntrl',[])
-  .controller('homecontroller',function($scope,$window,AUTH,ionicToast,$ionicLoading,$timeout,$location,Authhibi){
-
+  .controller('homecontroller',function($scope,$window,AUTH,ionicToast,$ionicLoading,$timeout,$location,Authhibi,PassData,$interval){
     // saving the token in localStorage
     AUTH.post('/api/AIO/user/me')// /api/AIO/user/me geta of the user specified in token
     .then(function(response){
@@ -11,6 +10,8 @@ angular
       $scope.data = response.data;
     })
 
+
+
     $scope.logout = function(){
       AUTH.logout();
       $window.localStorage.removeItem('data');
@@ -19,26 +20,37 @@ angular
         $location.path('/login');
       },1000)
 
-      }
+    }
+    // loading the data from local storage
+    $scope.notice = JSON.parse(PassData.getDataSave('notice'))
 
-      $scope.hibi = function(path,data={}){
-        $ionicLoading.show({
-              content: 'Loading',
-              animation: 'fade-in',
-              showBackdrop: true,
-              maxWidth: 200,
-              showDelay: 0
-        });
-        Authhibi.post(path,data)
+    $scope.hibi = function(path,da={}){
+
+        Authhibi.post(path,da)
          .then(function successCallback(response){
-          $ionicLoading.hide();
           console.log("making request");
-          console.log(response.data.Notices);
-          $scope.api_data = response.data.Notices
-
+          // saving the data to the local storage
+          PassData.sendDataSave('notice',JSON.stringify(response.data.Notices))
+          $scope.notice = response.data.Notices
           // if success
+          $scope.$broadcast('scroll.refreshComplete'); 
         },function errorCallback(response){
           // if error
+          $scope.$broadcast('scroll.refreshComplete'); 
         })
-      }
+         // to stop the refresher 
+        $scope.$broadcast('scroll.refreshComplete'); 
+    }
+
+    $scope.notice_data = function(notice_data){
+      PassData.sendDataSave('notice_data',JSON.stringify(notice_data))
+      $location.path("/data")
+    }
+
+    // making request at every ten seconds
+    $interval(function(){
+      $scope.hibi('/notice')
+   }.bind(this), 180000);
+
+
   })

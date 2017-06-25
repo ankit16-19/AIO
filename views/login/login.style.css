@@ -1,5 +1,6 @@
 div.pane{
   overflow-y:scroll;
+  position: relative;
 }
 div.wrapper{
   height: 100%;
@@ -27,4 +28,10 @@ input.ng-invalid.ng-touched{
 }
 .alrt{
   color: red;
+}
+
+
+ion-tabs{
+  position: absolute !important;
+  top: 0 !important;
 }

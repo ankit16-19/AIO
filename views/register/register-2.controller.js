@@ -1,6 +1,9 @@
 angular
   .module('registercntrl2',[])
-  .controller('registercontroller2',function($scope,AUTH,PassData,ionicToast,$timeout,$location,$window){
+  .controller('registercontroller2',function($scope,AUTH,PassData,ionicToast,$timeout,$location,$window,$ionicTabsDelegate){
+        // not showing tabs
+        $ionicTabsDelegate.showBar(false);
+        
         $scope.available = false;
         $scope.idused = false;
         // check if the hibiuid is alredy used
